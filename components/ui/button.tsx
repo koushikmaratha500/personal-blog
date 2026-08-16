@@ -26,12 +26,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     if (asChild && React.isValidElement(props.children)) {
       const child = props.children as React.ReactElement<any>;
-      const { asChild: _, variant: __, size: ___, ...restProps } = props;
-      
-      // When asChild is true, we don't want to pass 'children' to the clone if it already has children,
-      // but actually props.children IS the child itself, so restProps.children is the child element.
-      // We must omit children from restProps so we don't overwrite the child's children with itself!
-      const { children: ____, ...propsWithoutChildren } = restProps;
+      const { children: _, ...propsWithoutChildren } = props;
 
       return React.cloneElement(child, {
         ...propsWithoutChildren,
